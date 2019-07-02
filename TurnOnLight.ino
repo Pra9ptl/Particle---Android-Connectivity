@@ -6,12 +6,12 @@ InternetButton b = InternetButton();
 
 void setup() {
    b.begin();
+   
+   Particle.function("lights",controlNumberOfLights);
 }
 
 void loop() {
-    b.ledOn(3, 28, 219, 109);
-    b.ledOn(5, 28, 219, 109);
-    b.ledOn(9, 28, 219, 109);
+    
 }
 
 int controlNumberOfLights(String command){
@@ -29,4 +29,11 @@ int controlNumberOfLights(String command){
 	else if (noOfLights > 11){
 		noOfLights = 11;
 	}
+	
+	for (int i = 1; i <= noOfLights; i++) {
+		b.ledOn(i, 0, 100, 100);
+	}
+ 
+    // exit the function
+	return 1;
 }
